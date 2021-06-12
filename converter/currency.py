@@ -17,7 +17,7 @@ class CurrencyConverter:
         return amount
 
 
-class ConverterUI(tk.Tk):
+class App(tk.Tk):
     def __init__(self, c):
         tk.Tk.__init__(self)
         self.title = 'Currency Converter'
@@ -36,7 +36,9 @@ class ConverterUI(tk.Tk):
         self.date_label.place(x=100, y=50)
 
         # Entry box
-        self.amount_field = Entry(self, justify=CENTER)
+        validation = (self.register(self.number_only), '%d', '%P')
+        self.amount_field = Entry(self, justify=CENTER,
+                                  validate='key', validatecommand=validation)
         self.converted_amount = Label(self, text='', fg='red', justify=CENTER,
                                       width=17, borderwidth=3)
         self.amount_field.place(x=36, y=150)
@@ -77,13 +79,7 @@ class ConverterUI(tk.Tk):
         self.converted_amount.config(text=str(converted))
 
     def number_only(self, action, string):
-        r = re.compile(r'[0-9,]*?(\.)?[0-9,]*$')
+        r = re.compile(r'[0-9]*?(\.)?[0-9]*$')
         # 0.93
         res = r.match(string)
         return string == '' or (string.count('.') <= 1 and res is not None)
-
-
-c = CurrencyConverter('https://api.exchangerate-api.com/v4/latest/USD')
-
-ConverterUI(c)
-mainloop()
