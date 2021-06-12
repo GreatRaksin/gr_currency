@@ -8,25 +8,21 @@ with open(os.path.join(HERE, "README.md")) as fid:
     README = fid.read()
 # This call to setup() does all the work
 setup(
-    name="realpython-reader",
-    version="1.0.0",
-    description="Read the latest Real Python tutorials",
+    name="gr_currency",
+    version="0.0.1",
+    description="Real Time currency converter, Internet connection required",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/realpython/reader",
-    author="Real Python",
-    author_email="info@realpython.com",
-    license="MIT",
+    url="https://github.com/greatRaksin/gr_currency",
+    author="Great Raksin",
+    author_email="greatRaksin@icloud.com",
     classifiers=[
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
     ],
-    packages=["reader"],
+    packages=["converter"],
     include_package_data=True,
     install_requires=[
-        "feedparser", "html2text", "importlib_resources", "typing"
+        "requests",
     ],
-    entry_points={"console_scripts": ["realpython=reader.__main__:main"]},
 )
