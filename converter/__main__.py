@@ -79,6 +79,8 @@ class ConverterUI(tk.Tk):
     def number_only(self, action, string):
         r = re.compile(r'[0-9,]*?(\.)?[0-9,]*$')
         # 0.93
+        res = r.match(string)
+        return string == '' or (string.count('.') <= 1 and res is not None)
 
 
 c = CurrencyConverter('https://api.exchangerate-api.com/v4/latest/USD')
